@@ -26,7 +26,7 @@ export function Signin(){
                 <Input placeholder="username" refrence={userNameRef}/>
                 <Input placeholder="password" refrence={passwordRef}/>
                 <div className="flex justify-center pt-4">
-                <Button variant="primary" size="lg" text="Signin" fullwidth={true} loading={false} onclick={signin}/>
+                <Button variant="primary" size="lg" text="Login" fullwidth={true} loading={false} onclick={signin}/>
                 </div>
         </div>
     </div>

@@ -3,7 +3,9 @@ import { Navbar } from "../components/ui/navbar";
 import { TweeterIcon } from "../icons/tweeterIcon";
 import { ArrowIcon } from "../icons/arrow";
 import img1 from "../components/images/ChatGPT_Image_Mar_29__2025__07_58_47_PM-removebg-preview.png"
-export function LandingPage(){
+import { useNavigate } from "react-router-dom";
+export function LandingPage(){ 
+    const navigate = useNavigate()
     return <div>
         <Navbar/> 
         <div className="flex justify-start h-screen w-screen items-center bg-gray-100">
@@ -19,7 +21,9 @@ export function LandingPage(){
                 </p>
             </div> 
             <div className=" size-72 flex-row mr-64 mt-10 text-base ">
-                <Button variant="primary"  text="Get Started" size="md" onEnd={<ArrowIcon/>}/>
+                <Button variant="primary"  text="Get Started" size="md" onEnd={<ArrowIcon/>} onclick={()=>{
+                    navigate("/signup")
+                }}/>
             </div>
             </div>
                 <div className="h-96 w-96 bg-gray-100">

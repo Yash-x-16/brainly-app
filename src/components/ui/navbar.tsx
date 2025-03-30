@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom"
 import { DarkIcon } from "../../icons/darkIcon"
 
 export function Navbar(){ 
-    // const navigate = useNavigate() 
-    // function login(){
-    //     navigate("/signin")
-    // }
+    const navigate = useNavigate() 
+  
 return (<div className="bg-gray-100 w-screen fixed flex justify-between">
     <div className="flex text-2xl p-4 ">
         <div className="pr-2 text-blue-600 ">
@@ -20,7 +18,9 @@ return (<div className="bg-gray-100 w-screen fixed flex justify-between">
                 <div className="pr-4 pt-1 cursor-pointer"> 
                 <DarkIcon/>
                 </div>
-                <Button variant="primary" size="md" text="Login" onStart={<UserIcon/>}/>
+                <Button variant="primary" size="md" text="Login" onStart={<UserIcon/>} onclick={()=>{
+                    navigate('/signin')
+                }}/>
             </div>
     </div>
     )
