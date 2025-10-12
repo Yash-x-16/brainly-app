@@ -15,11 +15,12 @@ datasource db {
 }
 
 model User{
-  username  String @unique 
-  password  String 
-  email     String @unique 
-  userId    Int    @unique @default(autoincrement())  
-  links     Links[] 
+  username            String @unique 
+  password            String 
+  email               String @unique 
+  userId              Int    @unique @default(autoincrement())  
+  profilePicture      String?
+  links               Links[] 
 }
 
 model Links {
