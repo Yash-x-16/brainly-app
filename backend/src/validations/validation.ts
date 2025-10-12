@@ -1,3 +1,4 @@
+import type { EnumType } from "typescript"
 import z from "zod" 
 
 export const signupValidation = z.object({
@@ -16,3 +17,17 @@ export const linksValidation = z.object({
     title:z.string(), 
     link:z.string()  
 })
+
+const Type = ["YOUTUBE","TWITTER","NOTES"]
+
+export const ContentValidations = z.object({
+    title:z.string() , 
+    link:z.url() , 
+    tag:z.string().optional()  , 
+    type:z.enum(["YOUTUBE","TWITTER","NOTE"])
+})
+
+export const shareValidation = z.object({
+    share:z.boolean()
+})
+

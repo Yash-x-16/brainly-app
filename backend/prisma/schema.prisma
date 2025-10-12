@@ -20,13 +20,34 @@ model User{
   email               String @unique 
   userId              Int    @unique @default(autoincrement())  
   profilePicture      String?
-  links               Links[] 
+  content             content[]  
+  tags                tag[]  
+  link                link?
 }
 
-model Links {
-  linkId  Int  @unique @default(autoincrement()) 
+model content {
+  contentId  Int  @unique @default(autoincrement())  
+  type    TYPE
   title   String 
   link    String 
   userId  Int 
   user    User @relation(fields: [userId],references: [userId])  
+}
+
+model tag{
+  tagid   Int @unique @default(autoincrement()) 
+  tags    String 
+  userId  Int 
+  user    User  @relation(fields: [userId],references: [userId])
+}
+model link{
+  hash    String  
+  userId  Int  @unique
+  user    User @relation(fields: [userId],references: [userId])
+}
+
+enum TYPE{
+YOUTUBE
+TWITTER 
+NOTE
 }
