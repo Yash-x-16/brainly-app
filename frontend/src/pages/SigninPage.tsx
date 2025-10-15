@@ -1,9 +1,14 @@
 import { LuBrainCircuit } from "react-icons/lu";
 import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Buttons"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
+import { useState } from "react";
 export function SigninPage(){
-    const navigate = useNavigate() ; 
+    const navigate = useNavigate() ;  
+
+    const [email,setEmail] = useState('') 
+    const [password,setPassword] = useState('') 
+    
     return <div className="h-screen flex w-screen justify-center items-center bg-gradient-to-br from-emerald-950 via-teal-900 to-cyan-950">
         <div className="h-auto p-3  w-96 rounded-xl shadow-md gap-4 flex flex-col bg-slate-900/80 text-white border border-emerald-800">
                 <div className="flex items-center flex-col">
@@ -20,11 +25,20 @@ export function SigninPage(){
                     </div> 
           </div>
             <div className="flex flex-col">
-                <InputBox placeholder="email" label="Email" type="text"/>
-                <InputBox placeholder="•••••••"  label="Password" type="password" />
+                <InputBox placeholder="email" label="Email" type="text" onChange={(e)=>{
+                    if(e ===undefined){
+                        return 
+                    }
+                    setEmail(e.target.value)}}/>
+                <InputBox placeholder="•••••••"  label="Password" type="password" onChange={(e)=>{
+                    if(e===undefined){
+                        return 
+                    }
+                    setPassword(e.target.value)
+                }}/>
             </div>
             <div className="flex flex-col gap-1">
-                <Button type="primary" text="Signin" size="lg"/> 
+                <Button type="primary" text="Signin" size="lg" /> 
                 <span
                 onClick={()=>{navigate('/signup')}}
                  className="text-teal-400 cursor-pointer flex  justify-center">

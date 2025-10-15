@@ -2,7 +2,7 @@ interface buttonProp{
     text:string , 
     type:"primary"|"secondary" , 
     size:"sm"|"md"|"lg"  ,
-    onclick?:()=>{}
+    onclick?:undefined |string
 } 
 
 
