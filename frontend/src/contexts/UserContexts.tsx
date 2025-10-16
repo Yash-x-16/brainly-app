@@ -9,7 +9,7 @@ interface AuthUser{
 }
 
 export const UserContextProvider = ({children}:{children:ReactNode})=>{ 
-    const[user,setUser] = useState(false) ; 
+    const[user,setUser] = useState(true) ; 
     return <userContext.Provider value={{
         user , 
         setUser
