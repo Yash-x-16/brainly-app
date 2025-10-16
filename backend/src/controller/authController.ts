@@ -10,7 +10,7 @@ dotenv.config()
 export const  signup  = async(req:Request,res:Response)=>{
     const result = signupValidation.safeParse(req.body)
     if(result.error){
-        res.status(400).json({
+        res.json({
             message:"invalid validation" , 
             error:result.error
         })
@@ -47,7 +47,7 @@ export const  signup  = async(req:Request,res:Response)=>{
             })
         }
     }catch(e){
-        res.status(400).json({
+        res.json({
             message:"error in the signup controller" , 
             error:e
         })

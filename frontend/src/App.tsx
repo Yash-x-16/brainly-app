@@ -5,17 +5,23 @@ import { SigninPage } from './pages/SigninPage'
 import { Homepage } from './pages/HomePage'
 import { ProtectedRoute } from './utils/ProtectedRoute'
 import { UserContextProvider } from './contexts/UserContexts'
+import { GuestRoute } from './utils/GuestRoute'
 function App() {
  
 
   return <BrowserRouter>
   <UserContextProvider>
   <Routes>
+    
     <Route element={<ProtectedRoute/>}>
       <Route path='/home'element={<Homepage/>}/>
+    </Route> 
+
+    <Route element={<GuestRoute/>}>
+        <Route path='/signup'element={<SignupPage/>}></Route>
+        <Route path='/signin'element={<SigninPage/>}></Route>
     </Route>
-    <Route path='/signup'element={<SignupPage/>}></Route>
-    <Route path='/signin'element={<SigninPage/>}></Route>
+    
   </Routes>
   </UserContextProvider>
   </BrowserRouter>
