@@ -1,5 +1,5 @@
 
-import type { ChangeEventHandler, ReactNode } from "react"
+import type { ReactNode } from "react"
 
 interface inputProp{
     ref? : React.RefObject<HTMLInputElement> 

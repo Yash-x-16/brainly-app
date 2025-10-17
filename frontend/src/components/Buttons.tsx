@@ -31,4 +31,4 @@ export function Button(prop:buttonProp){
             
         </button>
     </div>
-}
+} 

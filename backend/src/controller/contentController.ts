@@ -8,14 +8,13 @@ export const addContent = async(req:Request,res:Response)=>{
     const results  = ContentValidations.safeParse(req.body) ; 
     
     if(results.error){
-        res.status(400).json({
+        res.json({
             message:"invalid validation" , 
             error:results.error
         })
         return 
 
     }
-
     try{
         const {link,title,tag,type} = results.data 
         const response = await client.content.create({

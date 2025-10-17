@@ -23,5 +23,27 @@ export async function getUser(Id:Number,token:string){
     return response 
 }
 
+interface content{
+    userid?:number , 
+    type:string, 
+    tag?:string , 
+    link:string
+}
 
-   
+export async function sendContent(data:content,token:string){
+    const response = await axios.post(`${BACKEND_URL}/content/addContent`,data,
+{headers:{
+    token
+}}) 
+
+return response 
+}
+
+export async function getContent(token :string){
+    const response = await axios.get(`${BACKEND_URL}/content/getContent`,{
+        headers:{
+            token
+        }
+    })
+    return response
+}
