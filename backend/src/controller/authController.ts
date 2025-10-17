@@ -106,4 +106,25 @@ export const  signin  = async(req:Request,res:Response)=>{
             error:e
         })
     }
+} 
+
+export const getUser = async(req:Request,res:Response)=>{
+    try{
+        const userId = req.userId 
+        const response = await client.user.findFirst({
+            where:{
+                userId:Number(userId) 
+            }
+        })
+
+        res.json({
+            message:"here is your user" , 
+            user:{...response ,}
+        })
+    }catch(e){
+        res.json({
+            message:"error in getting user" , 
+            error:e
+        })
+    }
 }
