@@ -8,6 +8,7 @@ import { Stats } from "../components/homepage/stats"
 import { PiYoutubeLogo } from "react-icons/pi";
 import { BsTwitterX } from "react-icons/bs";
 import { AddContentModel } from "../components/homepage/addContentModel";
+import { ContentModel } from "../components/homepage/contentModel";
 export function Homepage (){ 
     const [username,setUsername]= useState<string|null>(null) 
     const token = localStorage.getItem("token") 
@@ -44,8 +45,14 @@ return <div className="h-auto relative w-screen bg-gradient-to-br overflow-hidde
         <Stats title="YouTube" number="1" icon={<PiYoutubeLogo size={"44px"}/>}/>
         <Stats title="Twitter" number="1" icon={<BsTwitterX size={"30px"} color="#1fbfd8" />}/>
        </div>
-       <div className="mt-5">
+       <div className="flex gap-5">
+         <div className="mt-5">
         <AddContentModel/>
        </div>
+       <div className="mt-5">
+        <ContentModel/>
+       </div>
+       </div>
+      
     </div>
 }
