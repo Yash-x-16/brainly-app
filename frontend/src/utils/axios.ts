@@ -47,3 +47,13 @@ export async function getContent(token :string){
     })
     return response
 }
+
+
+export async function delContent(token:string ,contentId:number){
+    const response = await axios.delete(`${BACKEND_URL}/content/deleteContent/${contentId}`,{
+        headers:{
+            token
+        }
+    }) 
+    return response ; 
+}

@@ -1,8 +1,8 @@
 import { CiFilter } from "react-icons/ci"; 
 import { useContext } from "react"; 
-import { contentContext } from "../../contexts/ContentContext";
+import { ContentType } from "../../contexts/ContentType";
 export function FilterModel(){ 
-    const ctx = useContext(contentContext) 
+    const ctx = useContext(ContentType) 
     if (!ctx) {
         return null;
     }

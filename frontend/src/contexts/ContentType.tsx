@@ -6,14 +6,14 @@ interface CONTEXTTYPE{
     contentType:contentOptions , 
     setContentType:React.Dispatch<React.SetStateAction<contentOptions >>
 }
-export  const contentContext = createContext<CONTEXTTYPE | null>(null) 
+export  const ContentType = createContext<CONTEXTTYPE | null>(null) 
 
 export function ContentContextProvider({children}:{children:ReactNode}){
     const [contentType,setContentType] = useState<contentOptions>("All")
-    return <contentContext.Provider value={{
+    return <ContentType.Provider value={{
         contentType , 
         setContentType
     }} >
         {children}
-    </contentContext.Provider>
+    </ContentType.Provider>
 }

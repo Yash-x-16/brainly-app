@@ -20,7 +20,8 @@ export function Homepage (){
         title:string , 
         tag?:string , 
         link:string , 
-        type:contentOptions 
+        type:contentOptions  , 
+        contentId?:number
     } 
 
     const [username,setUsername]= useState<string|null>(null) 
@@ -47,7 +48,7 @@ async function Getuser(){
 
 useEffect(()=>{
     console.log("updated content is : ",content)
-    console.log(" filtered tags is ",content?.filter((x)=>x.tag))
+    
 },[content])
 useEffect(()=>{
   
@@ -87,10 +88,11 @@ return <div className="h-auto relative w-screen bg-gradient-to-br flex-col from-
                             no content yet
                         </div>:content.map((x,idx)=>{return <div key={idx} className="max-w-sm w-full sm:w-[300px]">
                                     <ContentCard
+                                        contentId={x.contentId}
                                         title={x.title}
                                         url={x.link || x.link}
                                         tag={x.tag}
-                                        type={x.type}
+                                        type={x.type} 
                                     />
                                     </div>})}
                     </div>

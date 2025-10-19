@@ -6,7 +6,7 @@ import { Homepage } from './pages/HomePage'
 import { ProtectedRoute } from './utils/ProtectedRoute'
 import { UserContextProvider } from './contexts/UserContexts'
 import { GuestRoute } from './utils/GuestRoute'
-import { ContentContextProvider } from './contexts/ContentContext'
+import { ContentContextProvider } from './contexts/ContentType'
 function App() {
   return <BrowserRouter>
   <UserContextProvider>
