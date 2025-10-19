@@ -3,6 +3,7 @@ import { ContentValidations,  shareValidation } from "../validations/validation.
 import { client } from "../db/db.js";
 import { random } from "../utils/utils.js";
 
+
 export const addContent = async(req:Request,res:Response)=>{
     
     const results  = ContentValidations.safeParse(req.body) ; 
@@ -21,7 +22,8 @@ export const addContent = async(req:Request,res:Response)=>{
             data:{
                 title , 
                 type,
-                link , 
+                link ,
+                tags:tag as string,  
                 user:{connect:{
                     userId:Number(req.userId)
                 }}
@@ -44,12 +46,12 @@ export const getContent = async(req:Request,res:Response)=>{
             const response = await client.content.findMany({
                 where:{
                     userId:Number(userId)
-                }
+                } 
             }) 
 
             res.json({
                 message:"here are your contents",
-                content:{...response,userId:null}
+                content:response,
             })
 
         } catch (error) {

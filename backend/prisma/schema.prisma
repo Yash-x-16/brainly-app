@@ -20,8 +20,7 @@ model User{
   email               String @unique 
   userId              Int    @unique @default(autoincrement())  
   profilePicture      String?
-  content             content[]  
-  tags                tag[]  
+  content             content[]   
   link                link?
 }
 
@@ -31,15 +30,10 @@ model content {
   title   String 
   link    String 
   userId  Int 
+  tags   String
   user    User @relation(fields: [userId],references: [userId])  
 }
 
-model tag{
-  tagid   Int @unique @default(autoincrement()) 
-  tags    String 
-  userId  Int 
-  user    User  @relation(fields: [userId],references: [userId])
-}
 model link{
   hash    String  
   userId  Int  @unique
