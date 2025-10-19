@@ -15,7 +15,7 @@ const router = express.Router()
 
 router.post('/addContent',Middleware,addContent)
 router.get('/getContent',Middleware,getContent)
-router.delete('/deleteContent',Middleware,deleteContent)
+router.delete('/deleteContent/:contentId',Middleware,deleteContent)
 router.post('/content/share',Middleware,shareContent) 
 router.get('/content/:id',Middleware,shareContentById)
 

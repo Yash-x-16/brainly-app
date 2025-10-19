@@ -64,18 +64,17 @@ export const getContent = async(req:Request,res:Response)=>{
 
 export const deleteContent = async(req:Request,res:Response)=>{
     try {
-        const {contentId} =req.body ; 
+        const contentId =req.params.contentId ;   
         await client.content.delete({
             where:{
-                contentId
+                contentId:Number(contentId)
             }
         })  
-
         res.json({
             message:"content deleted"
         })
     } catch (error) {
-        res.status(404).json({
+        res.json({
             message:"error occured in deleting" , 
             error
         })
