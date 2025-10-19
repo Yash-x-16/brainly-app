@@ -30,7 +30,7 @@ model content {
   title   String 
   link    String 
   userId  Int 
-  tags   String
+  tag   String
   user    User @relation(fields: [userId],references: [userId])  
 }
 

@@ -6,20 +6,32 @@ import { Homepage } from './pages/HomePage'
 import { ProtectedRoute } from './utils/ProtectedRoute'
 import { UserContextProvider } from './contexts/UserContexts'
 import { GuestRoute } from './utils/GuestRoute'
-import { ContentContextProvider } from './contexts/ContentType'
+import { ContentContextProvider } from './contexts/ContentType' 
+import { ContentDataProvider } from './contexts/contentDataContext'
+
+
 function App() {
+
   return <BrowserRouter>
   <UserContextProvider>
     <ContentContextProvider>
-  <Routes>
-    <Route element={<ProtectedRoute/>}>
+          <ContentDataProvider>  
+  <Routes> 
+
+  
+      <Route element={<ProtectedRoute/>}>
       <Route path='/home'element={<Homepage/>}/>
-    </Route> 
+       </Route>
+  
+
+    
+    
     <Route element={<GuestRoute/>}>
         <Route path='/signup'element={<SignupPage/>}></Route>
         <Route path='/signin'element={<SigninPage/>}></Route>
     </Route>
   </Routes>
+      </ContentDataProvider>
    </ContentContextProvider>
   </UserContextProvider>
   </BrowserRouter>

@@ -2,8 +2,9 @@ import { PiYoutubeLogo } from "react-icons/pi";
 import { MdDelete } from "react-icons/md";
 import { BsTwitterX } from "react-icons/bs";
 import { FaExternalLinkAlt } from "react-icons/fa"; 
-import { delContent } from "../../utils/axios";
-
+import { delContent, getContent } from "../../utils/axios";
+import { ContentDataContext, type contentType } from "../../contexts/contentDataContext";
+import { useContext } from "react";
 
 interface content{
     title : string , 
@@ -14,11 +15,32 @@ interface content{
 }
 
 export function ContentCard (prop:content){ 
-  async  function Dcontent(){
-        const token = localStorage.getItem("token")
-        const response = await delContent(token as string , prop.contentId as number) 
-        console.log(response.data)
-    }
+    const ctx = useContext(ContentDataContext) 
+    
+    const {setData}  = ctx 
+    
+    if(ctx ===undefined){
+        return
+    } 
+
+async function Dcontent() {
+    const token = localStorage.getItem("token");
+    
+    // 1. Delete the content
+    // Note: Assuming 'prop' is available in the scope where Dcontent is called (e.g., passed as a prop to the ContentCard component)
+    const deleteResponse = await delContent(token as string, prop.contentId as number);
+    console.log("deleted response is ", deleteResponse.data);
+
+    // 2. Get the updated list of content
+    const response2 = await getContent(token as string);
+    
+    // 3. FIX: Access the nested 'content' property from the response data.
+    // We assume response2.data is an object like { content: [...] }
+    const updatedContentArray = response2.data.content as contentType[] | undefined; 
+
+    // 4. Update the state with the array
+    setData(updatedContentArray); 
+}
     return <div className="bg-slate-800/50 p-4 shadow-md group min-w-96 flex border border-teal-800 transition-all duration-300 gap-4 flex-col rounded-md hover:border-teal-600">
         <div className="flex justify-between items-center">
              <div className="flex  items-center gap-2"> 
@@ -31,7 +53,7 @@ export function ContentCard (prop:content){
                 </span>
             </div>
             <div
-            onClick={Dcontent}
+            onClick={async ()=>{await Dcontent()}}
              className="text-red-500 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto cursor-pointer hover:text-red-600 transition-opacity duration-200">
                 <MdDelete size={"24px"}/>
             </div>

@@ -11,32 +11,27 @@ import { AddContentModel } from "../components/homepage/addContentModel";
 import { FilterModel } from "../components/homepage/FilterModel";
 import { ContentCard } from "../components/homepage/ContentCard";
 import { getContent } from "../utils/axios";
-
+import { ContentDataContext } from "../contexts/contentDataContext";
 
 
 export function Homepage (){
-    type contentOptions = "YOUTUBE" | "TWITTER"  
-    interface ContentItem{
-        title:string , 
-        tag?:string , 
-        link:string , 
-        type:contentOptions  , 
-        contentId?:number
-    } 
-
+    const contextCtx = useContext(ContentDataContext)
+    
     const [username,setUsername]= useState<string|null>(null) 
-    const [content,setContent]=useState<ContentItem[]| null>(null) 
     const token = localStorage.getItem("token") 
     const ctx = useContext(userContext) 
-    
-    if(ctx===null)
+ const {data,setData} = contextCtx 
+
+    if(ctx===null || contextCtx===null || data===undefined)
         return <div> context not provided </div>
     
+   
+
     let ID :number; 
 
 async function GETcontent(){
     const response = await getContent(token as string) ; 
-     setContent(response.data.content) 
+     setData(response.data.content) 
 }
     
 async function Getuser(){
@@ -47,9 +42,9 @@ async function Getuser(){
 }
 
 useEffect(()=>{
-    console.log("updated content is : ",content)
+    console.log("updated content is : ",data)
     
-},[content])
+},[data])
 useEffect(()=>{
   
     if(token===null){
@@ -59,7 +54,7 @@ useEffect(()=>{
     ID = setUserId(token)as number
     Getuser() 
     GETcontent() 
-    console.log("effect ran",content) ; ;
+    console.log("effect ran",data) ; ;
 
 },[]) 
 
@@ -83,10 +78,10 @@ return <div className="h-auto relative w-screen bg-gradient-to-br flex-col from-
                     <div className="mt-5">
                         <FilterModel/>
                     </div> 
-                    <div className="">
-                        {content===null?<div>
+                    <div className=" flex flex-wrap gap-3">
+                        {data===null?<div>
                             no content yet
-                        </div>:content.map((x,idx)=>{return <div key={idx} className="max-w-sm w-full sm:w-[300px]">
+                        </div>:data.map((x,idx)=>{return <div key={idx} >
                                     <ContentCard
                                         contentId={x.contentId}
                                         title={x.title}

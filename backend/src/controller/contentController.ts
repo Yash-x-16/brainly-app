@@ -23,7 +23,7 @@ export const addContent = async(req:Request,res:Response)=>{
                 title , 
                 type,
                 link ,
-                tags:tag as string,  
+                tag:tag as string,  
                 user:{connect:{
                     userId:Number(req.userId)
                 }}
