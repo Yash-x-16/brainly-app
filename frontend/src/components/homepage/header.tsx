@@ -1,9 +1,21 @@
 import { LuBrainCircuit } from "react-icons/lu";
 import { Button } from "../Buttons";
 import { IoIosLogOut } from "react-icons/io"; 
-
+import { useContext } from "react";
+import { userContext } from "../../contexts/UserContexts";
 interface header{
     username:string
+}
+function logout (){
+    const ctx  = useContext(userContext) ; 
+    if(ctx===null){
+        return 
+    }
+    
+    const {setUser}  = ctx
+    localStorage.removeItem("token")
+
+    setUser(false) ; 
 }
 export function Header(prop:header){
 
@@ -20,7 +32,7 @@ export function Header(prop:header){
        </span>
     </div> 
     <div className="text-teal-300 absolute right-10 text-sm font-light">
-        <Button text="signout" size="lg" type="secondary" iconOnStart={<IoIosLogOut size={"24px"}/>} />
+        <Button text="signout" size="lg" type="secondary" iconOnStart={<IoIosLogOut size={"24px"}/>} onclick={logout} />
     </div>
 
     </div>

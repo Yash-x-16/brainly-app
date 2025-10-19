@@ -8,8 +8,6 @@ import { UserContextProvider } from './contexts/UserContexts'
 import { GuestRoute } from './utils/GuestRoute'
 import { ContentContextProvider } from './contexts/ContentContext'
 function App() {
- 
-
   return <BrowserRouter>
   <UserContextProvider>
     <ContentContextProvider>
